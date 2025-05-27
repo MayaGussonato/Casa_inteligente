@@ -1,28 +1,23 @@
-byte led = 12;
-byte som = 13;
-int sensorGas = A5; 		 
-int valorSensorGas = 0;
+int led = 12;
+int buzzer = 13;
+int sensor = A5;
 
 void setup() {
-  Serial.begin(9600);	
-  pinMode (sensorGas, INPUT);
-  pinMode (led, OUTPUT);
+  pinMode(sensor, INPUT);
+  pinMode(led, OUTPUT);
+  pinMode(buzzer, OUTPUT);
 }
-  void loop() 
-{	
-  valorSensorGas = analogRead(sensorGas);
 
-  if (valorSensorGas >250) 					
-  {				
-    
-    digitalWrite(led, HIGH);							
-    tone(som, 1500);
+void loop() {
+  int valor = analogRead(sensor);
+
+  if (valor > 250) {
+    digitalWrite(led, HIGH);
+    tone(buzzer, 1500);
     delay(500);
-    noTone (som);
+    noTone(buzzer);
     delay(500);
-  }
-  else 	
-  {
-    digitalWrite(led, LOW);		
+  } else {
+    digitalWrite(led, LOW);
   }
 }
